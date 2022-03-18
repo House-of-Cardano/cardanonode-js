@@ -1,0 +1,23 @@
+{
+  "name": "cardanonode-js",
+  "version": "0.0.1",
+  "description": "A javascript wrapper to interact with the cardano blockchain via cardano-cli commands",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/House-of-Cardano/cardanonode-js.git"
+  },
+  "author": "HouseOfCardano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/House-of-Cardano/cardanonode-js/issues"
+  },
+  "homepage": "https://github.com/House-of-Cardano/cardanonode-js#readme",
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15"
+  }
+}
