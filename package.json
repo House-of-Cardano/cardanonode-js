@@ -1,5 +1,5 @@
 {
-  "name": "cardanonode-js",
+  "name": "cardanonode",
   "version": "0.0.1",
   "description": "A javascript wrapper to interact with the cardano blockchain via cardano-cli commands",
   "main": "app.js",
