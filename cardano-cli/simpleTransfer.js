@@ -15,8 +15,6 @@ const checkBankUTxO = checkBank(
   "../houseofcardano-explorer-testnet/data",
   "bankUTxO"
 );
-  
-// console.log(checkBankUTxO[0]);
 
 execSync(`cardano-cli transaction build \
 --${NETWORK_PARAMETERS.era} \
