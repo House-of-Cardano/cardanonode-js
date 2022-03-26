@@ -5,8 +5,9 @@ const {
   SCRIPT_ADDRESS_PARAMETERS,
   ADDRESSES,
 } = require("../config");
+
 const hashName = require("../cardano-cli/hashName");
-const policy = require("../cardano-cli/policyID");
+const policy = require("../cardano-cli/policy");
 
 describe("hashName()", () => {
   const hash = hashName("Cardano-Millions-Token");
@@ -20,8 +21,8 @@ describe("hashName()", () => {
       console.log("43617264616e6f2d4d696c6c696f6e732d546f6b656e")
     ); // WTF is going on here - the output strings are identical but test fails if I don't console.log. The output strings are both of the exact same type too. Is tehre an issue with the output of the hashName function?
   });
-  it("generates a hash that can be used in a cardano-clie transaction", () => {
-    execSync`cardano-cli transaction build \
+  it("generates a hash that can be used in a cardano-cli transaction build", () => {
+    expect(execSync`cardano-cli transaction build \
     --${NETWORK_PARAMETERS.era} \
     --${NETWORK_PARAMETERS.networkMagic} \
     --tx-in $1 \
@@ -31,6 +32,6 @@ describe("hashName()", () => {
     --mint="$tokenamount $policyid.$tokenname" \
     --minting-script-file ./blockchain/policy/policy.script \
     --protocol-params-file ./blockchain/protocol.json \
-    --out-file ./blockchain/mint_tx.raw`;
+    --out-file ./blockchain/mint_tx.raw`).toBe("");
   });
 });
