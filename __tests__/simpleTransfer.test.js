@@ -40,13 +40,13 @@ describe("transferFunds()", () => {
   it("returns a BuildTransaction instance", () => {
     expect(transferFundsAtoB instanceof BuildTransaction).toEqual(true);
   });
-  it("is correctly built", () => {
-    expect(something).toBeGreaterThan(something);
-  });
-  it("is correctly signed", () => {
-    expect(something).toBeGreaterThan(something);
-  });
-  it("is correctly submitted", () => {
-    expect(something).toBeGreaterThan(something);
-  });
+  // it("is correctly built", () => {
+  //   expect(something).toBeGreaterThan(something);
+  // });
+  // it("is correctly signed", () => {
+  //   expect(something).toBeGreaterThan(something);
+  // });
+  // it("is correctly submitted", () => {
+  //   expect(something).toBeGreaterThan(something);
+  // });
 });
