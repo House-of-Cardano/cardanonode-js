@@ -20,4 +20,9 @@ function mockPolicyScript() {
   return script;
 }
 
-module.exports = { mockPolicyKeyPairs, mockPolicyScript };
+function mockPolicyID() {
+  const id = fs.readFileSync("./__tests__/policyID", "utf-8");
+  return id;
+}
+
+module.exports = { mockPolicyKeyPairs, mockPolicyScript, mockPolicyID };

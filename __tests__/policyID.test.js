@@ -9,8 +9,9 @@ const {
 const mockPolicy = require("../test_functions/policyIDTestingFunctions");
 
 describe("policyID()", () => {
-  keys = mockPolicy.mockPolicyKeyPairs();
-  script = mockPolicy.mockPolicyScript();
+  const keys = mockPolicy.mockPolicyKeyPairs();
+  const script = mockPolicy.mockPolicyScript();
+  const id = mockPolicy.mockPolicyID();
   it("generates a cborHex value as a string", () => {
     expect(typeof keys[0].cborHex).toBe("string");
   });
@@ -31,22 +32,9 @@ describe("policyID()", () => {
     expect(typeof script).toEqual("string");
   });
   it("generates a valid policy script", () => {
-    expect(script).toContain("3b4d1291aa1f4370afdcad61a691c094f8ca629033e73d5f11f38f0d");
+    expect(script).toContain("9f01a5ceb3332a209ddc414668879264433228063d25b2d636149bc0");
   });
   it("generates a valid policyID", () => {
-    expect().toEqual("");
-  });
-  it("generates a policyID able to be used in a cardano-cli transaction build", () => {
-    expect(execSync`cardano-cli transaction build \
-        --${NETWORK_PARAMETERS.era} \
-        --${NETWORK_PARAMETERS.networkMagic} \
-        --tx-in $1 \
-        --tx-in-collateral $1 \
-        --tx-out "$bank+$minAdaAmount+$tokenamount $policyid.$tokenname" \
-        --change-address $bank \
-        --mint="$tokenamount $policyid.$tokenname" \
-        --minting-script-file ./blockchain/policy/policy.script \
-        --protocol-params-file ./blockchain/protocol.json \
-        --out-file ./blockchain/mint_tx.raw`).toBe("");
+    expect(id).toEqual("63e39bfe53706bab0002b5fdc194cd5da79294656ca9301a7ca69193");
   });
 });

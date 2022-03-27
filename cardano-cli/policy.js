@@ -12,26 +12,19 @@ class Policy {
   }
   static policyScript() {
     // Create a policy.script file and fill it with an empty string ->
-    execSync(`touch ./blockchain/policy/policy.script && echo "" > ./blockchain/policy/policy.script`);
-    execSync(`echo "{" >> ./blockchain/policy/policy.script`);
-    execSync(`echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file ./blockchain/policy/policy.vkey)\"," >> ./blockchain/policy/policy.script`);
-    execSync(`echo "  \"type\": \"sig\"" >> ./blockchain/policy/policy.script`);
-    execSync(`echo "}" >> ./blockchain/policy/policy.script`); 
-    };
-    
+    execSync(". ./cardano-cli/policyID.sh");
+  }
+
   static policyID() {
     // Generate policyID ->
-    const policyID = 
-    execSync(`cardano-cli transaction policyid
-    --script-file ./blockchain/policy/policy.script >> ./blockchain/policy/policyID`
-    );
+    const policyID = execSync(`cardano-cli transaction policyid
+    --script-file ./blockchain/policy/policy.script >> ./blockchain/policy/policyID`);
     console.log(policyID);
     return policyID.toString();
   }
 }
 
 // Policy.policyKeyPairs();
-Policy.policyScript();
-// Policy.policyID();
+// Policy.policyScript();
 
 module.exports = Policy;
