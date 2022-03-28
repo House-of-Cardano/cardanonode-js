@@ -6,8 +6,9 @@ function hashName(name) {
         `cabal exec token-name -- ${name}` 
     );
     process.chdir("/home/node/HouseOfCardano/cardano-millions-testnet/cardanonode-js");
-
     return hash.toString();
 };
+
+// hashName("CardanoMillionsToken");
 
 module.exports = hashName;
