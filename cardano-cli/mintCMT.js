@@ -31,6 +31,12 @@ const policyidClean = policyid.replace(/(\r\n|\n|\r)/gm, "");
 const mint = `"${MINTING_PARAMETERS.tokenAmount} ${policyidClean}.${tokenName}"`.replace(/(\r\n|\n|\r)/gm, "");
 const txOut = `${ADDRESSES.bank}+${NETWORK_PARAMETERS.minAdaAmount}+${mint}`.replace(/(\r\n|\n|\r)/gm, "");
 
+function hashDatum() {
+  const data = fs.readFileSync("./data/datum_hash.json", "utf-8");
+  return data;
+};  
+const hashdatum = hashDatum();
+const hashedDatum = hashdatum.replace(/(\r\n|\n|\r)/gm, "");
 
 execSync(`cardano-cli transaction build \
 --${NETWORK_PARAMETERS.era} \
@@ -38,6 +44,7 @@ execSync(`cardano-cli transaction build \
 --tx-in ${checkBankUTxO[0]} \
 --tx-in-collateral ${checkBankUTxO[0]} \
 --tx-out ${txOut} \
+--tx-out-datum-hash ${hashedDatum} \
 --change-address ${ADDRESSES.bank} \
 --mint=${mint} \
 --minting-script-file ./blockchain/policy/policy.script \
