@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+// Reads the lucky numbers chosen by the player and prepares the datum.json file ready to be hashed in hashCMTDatume.js
+
 function getLuckyNumbers() {
   const data = fs.readFileSync(
     "../houseofcardano-explorer-testnet/data/datum",
@@ -39,7 +41,7 @@ const datum = {
 
 const jsonDatum = JSON.stringify(datum);
 
-fs.writeFile("./data/datum.json", jsonDatum, "utf8", function (err) {
+fs.writeFile("./blockchain/datum.json", jsonDatum, "utf8", function (err) {
 if (err) {
     console.log("An error occured while writing JSON Object to File.");
     return console.log(err);

@@ -32,7 +32,7 @@ const mint = `"${MINTING_PARAMETERS.tokenAmount} ${policyidClean}.${tokenName}"`
 const txOut = `${ADDRESSES.bank}+${NETWORK_PARAMETERS.minAdaAmount}+${mint}`.replace(/(\r\n|\n|\r)/gm, "");
 
 function hashDatum() {
-  const data = fs.readFileSync("./data/datum_hash.json", "utf-8");
+  const data = fs.readFileSync("./blockchain/datum_hash.json", "utf-8");
   return data;
 };  
 const hashdatum = hashDatum();

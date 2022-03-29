@@ -1,6 +1,11 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
 
+// class Policy that is used in makePolicyFiles.js to create the following files ->
+// -> policy key pairs
+// -> policy.script
+// -> policyID
+
 class Policy {
   constructor() {}
 
