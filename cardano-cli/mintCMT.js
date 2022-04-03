@@ -1,7 +1,7 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
 
-const checkBank = require("../processing/checkBankUTxO");
+const checkUTxO = require("../processing/checkAddrUTxO");
 const hashName = require("./hashName");
 
 const {
@@ -13,9 +13,14 @@ const {
 
 // Need to call the REST API /cardano-explorer-queryBank before running script because UTxOs have been consumed
 
-const checkBankUTxO = checkBank(
+const checkBankUTxO = checkUTxO(
   "../houseofcardano-explorer-testnet/data",
   "bankUTxO"
+);
+
+const checkGameAddrUTxO = checkUTxO(
+  "../houseofcardano-explorer-testnet/data",
+  "AddrUTxO"
 );
 
 function policyID() {
@@ -29,7 +34,7 @@ const policyid = policyID();
 const policyidClean = policyid.replace(/(\r\n|\n|\r)/gm, "");
 
 const mint = `"${MINTING_PARAMETERS.tokenAmount} ${policyidClean}.${tokenName}"`.replace(/(\r\n|\n|\r)/gm, "");
-const txOut = `${ADDRESSES.bank}+${NETWORK_PARAMETERS.minAdaAmount}+${mint}`.replace(/(\r\n|\n|\r)/gm, "");
+const txOut = `${ADDRESSES.scriptAddr}+${NETWORK_PARAMETERS.minAdaAmount}+${mint}`.replace(/(\r\n|\n|\r)/gm, "");
 
 function hashDatum() {
   const data = fs.readFileSync("./blockchain/datum_hash.json", "utf-8");
