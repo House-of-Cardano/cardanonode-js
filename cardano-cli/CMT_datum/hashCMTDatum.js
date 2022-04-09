@@ -4,5 +4,5 @@ const { execSync } = require("child_process");
 // Prepares the input datum hash for mintCMT.js
 
 execSync(
-    `cardano-cli transaction hash-script-data --script-data-file ./blockchain/datum.json > ./blockchain/datum_hash.json`
+    `cardano-cli transaction hash-script-data --script-data-file ../houseofcardano-explorer-testnet/data/datum.json > ../houseofcardano-explorer-testnet/data/datum_hash.json`
   );

@@ -41,10 +41,13 @@ const datum = {
 
 const jsonDatum = JSON.stringify(datum);
 
+console.log(jsonDatum);
+
 fs.writeFile("./blockchain/datum.json", jsonDatum, "utf8", function (err) {
 if (err) {
     console.log("An error occured while writing JSON Object to File.");
     return console.log(err);
 }
 console.log("A json file has been saved");
+return jsonDatum;
 });
