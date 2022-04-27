@@ -11,14 +11,10 @@ const {
   ADDRESSES,
 } = require("../config");
 
-// const datumHash = process.argv[2];
-
-// Need to call the REST API /cardano-explorer-queryAddr before running script because UTxOs have been consumed => USE THE GAME WALLET
-
-const checkAddrUTxO = checkUTxO(
-  "../houseofcardano-explorer-testnet/data/",
-  "addrUTxO"
-);
+// const checkAddrUTxO = checkUTxO(
+//   "../houseofcardano-explorer-testnet/data/",
+//   "addrUTxO"
+// );
 
 function policyID() {
   const policyid = fs.readFileSync("./blockchain/policy/policyID", "utf-8");
@@ -35,13 +31,16 @@ const txOut = `${ADDRESSES.scriptAddr}+${NETWORK_PARAMETERS.minAdaAmount}+${mint
 
 const datumHash = `${SCRIPT_ADDRESS_PARAMETERS.scriptDatumHashOne}`.replace(/(\r\n|\n|\r)/gm, "");
 
-const gameAddres = "addr_test1qr8px8xy5acc7mm40s5vckn5unssvx0wxkw8vnlwyl9gexgc8u0yys6k9ajrqje5nwj8pec34f8qkrk797zkmva83g5qafyhn6";
+const gameAddres = process.argv[2];
+// const gameAddres = "addr_test1qr8px8xy5acc7mm40s5vckn5unssvx0wxkw8vnlwyl9gexgc8u0yys6k9ajrqje5nwj8pec34f8qkrk797zkmva83g5qafyhn6";
+
+const utxoIn = process.argv[3];
 
 execSync(`cardano-cli transaction build \
 --${NETWORK_PARAMETERS.era} \
 --${NETWORK_PARAMETERS.networkMagic} \
---tx-in ${checkAddrUTxO[0]} \
---tx-in-collateral ${checkAddrUTxO[0]} \
+--tx-in ${utxoIn} \
+--tx-in-collateral ${utxoIn} \
 --tx-out ${txOut} \
 --tx-out-datum-hash ${datumHash} \
 --change-address ${gameAddres} \
