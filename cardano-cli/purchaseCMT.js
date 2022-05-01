@@ -51,12 +51,6 @@ const datumHash2 = `${SCRIPT_ADDRESS_PARAMETERS.scriptDatumHashTwo}`.replace(
   /(\r\n|\n|\r)/gm,
   ""
 );
-// console.log(`Name: ${name}`);
-// console.log(`Token name: ${tokenName}`);
-// console.log(`Mint: ${mint}`);
-// console.log(`Datum hash: ${datumHash1}`);
-// console.log(`Datum hash: ${datumHash2}`);
-// console.log("Getting CMT UTxO from the script address...");
 
 const utxoData = async () => {
   const utxoData = await query(CMTUTxOUrl);
