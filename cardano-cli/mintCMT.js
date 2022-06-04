@@ -11,11 +11,6 @@ const {
   ADDRESSES,
 } = require("../config");
 
-// const checkAddrUTxO = checkUTxO(
-//   "../houseofcardano-explorer-testnet/data/",
-//   "addrUTxO"
-// );
-
 function policyID() {
   const policyid = fs.readFileSync("./blockchain/policy/policyID", "utf-8");
   return policyid
@@ -32,7 +27,6 @@ const txOut = `${ADDRESSES.scriptAddr}+${NETWORK_PARAMETERS.minAdaAmount}+${mint
 const datumHash = `${SCRIPT_ADDRESS_PARAMETERS.scriptDatumHashOne}`.replace(/(\r\n|\n|\r)/gm, "");
 
 const gameAddres = process.argv[2];
-// const gameAddres = "addr_test1qr8px8xy5acc7mm40s5vckn5unssvx0wxkw8vnlwyl9gexgc8u0yys6k9ajrqje5nwj8pec34f8qkrk797zkmva83g5qafyhn6";
 
 const utxoIn = process.argv[3];
 
